@@ -2253,10 +2253,13 @@ log(logging.DEBUG, "Configuration: " + str(config))
 if config["webhook_enabled"]:
     updater.start_webhook(listen=config["webhook_listen"],
                           port=config["webhook_port"],
-                          url_path=config["bot_token"],
-                          key=config["webhook_key"],
-                          cert=config["webhook_cert"],
-                          webhook_url=config["webhook_url"])
+                          url_path=config["bot_token"]
+                          # key=config["webhook_key"],
+                          # cert=config["webhook_cert"],
+                          # webhook_url=config["webhook_url"])
+                          )
+    updater.bot.set_webhook("https://telegram-kraken-bot.herokuapp.com/" + config["bot_token"])
+    updater.idle()
 else:
     # Start polling to handle all user input
     # Dismiss all in the meantime send commands
